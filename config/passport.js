@@ -31,7 +31,7 @@ module.exports = passport => {
         };
         // check for existing user
         User.findOne({
-          facebookID: profile.id
+          email: profile.email
         }).then(user => {
           if (user) {
             // return user
