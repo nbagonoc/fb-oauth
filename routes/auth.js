@@ -2,18 +2,13 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
-// GET | google auth login
-router.get(
-  "/google",
-  passport.authenticate("google", {
-    scope: ["profile", "email"]
-  })
-);
+// GET | faecbook auth login
+router.get("/facebook", passport.authenticate("facebook"));
 
-// GET | redirect user after google oauth
+// GET | redirect user after facebook oauth
 router.get(
-  "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/" }),
+  "/facebook/callback",
+  passport.authenticate("facebook", { failureRedirect: "/" }),
   (req, res) => {
     res.redirect("/dashboard");
   }
