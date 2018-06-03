@@ -10,7 +10,7 @@ module.exports = passport => {
         clientID: keys.fbAppID,
         clientSecret: keys.fbAppSecret,
         callbackURL: "/auth/facebook/callback",
-        // profileFields: ["id", "displayName", "photos", "email"],
+        profileFields: ["id", "emails", "name"],
         proxy: true
       },
       (accessToken, refreshToken, profile, done) => {
