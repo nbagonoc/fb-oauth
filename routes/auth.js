@@ -3,7 +3,10 @@ const router = express.Router();
 const passport = require("passport");
 
 // GET | faecbook auth login
-router.get("/facebook", passport.authenticate("facebook"));
+router.get(
+  "/facebook",
+  passport.authenticate("facebook", { scope: ["email"] })
+);
 
 // GET | redirect user after facebook oauth
 router.get(
