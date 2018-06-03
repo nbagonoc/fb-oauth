@@ -31,7 +31,7 @@ module.exports = passport => {
         };
         // check for existing user
         User.findOne({
-          email: profile.email
+          email: profile.emails[0].value
         }).then(user => {
           if (user) {
             // return user
