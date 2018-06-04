@@ -9,6 +9,28 @@ a {
 .list-group .list-group-item a {
   display: block;
 }
+/* SOCIAL BUTTONS */
+.btn-google {
+  background: #da3922 !important;
+  color: #fff !important;
+}
+.btn-google:hover {
+  background: #9f1e1b !important;
+}
+.btn-facebook {
+  background: #3c5898 !important;
+  color: #fff !important;
+}
+.btn-facebook:hover {
+  background: #264381 !important;
+}
+.btn-twitter {
+  background: #00caff !important;
+  color: #fff !important;
+}
+.btn-twitter:hover {
+  background: #0080bd !important;
+}
 
 /* BANNER */
 .cover {

@@ -5,8 +5,13 @@ const { Schema } = mongoose;
 // Create Schema
 const UserSchema = new Schema({
   facebookID: {
-    type: String,
-    required: true
+    type: String
+  },
+  googleID: {
+    type: String
+  },
+  twitterID: {
+    type: String
   },
   email: {
     type: String,

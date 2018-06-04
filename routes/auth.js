@@ -2,7 +2,26 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
-// GET | faecbook auth login
+// GOOGLE STRATEGY
+// GET | google auth login
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"]
+  })
+);
+
+// GET | redirect user after google oauth
+router.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "/" }),
+  (req, res) => {
+    res.redirect("/dashboard");
+  }
+);
+
+// FACEBOOK STRATEGY
+// GET | facebook auth login
 router.get(
   "/facebook",
   passport.authenticate("facebook", { scope: ["email"] })
@@ -12,6 +31,19 @@ router.get(
 router.get(
   "/facebook/callback",
   passport.authenticate("facebook", { failureRedirect: "/" }),
+  (req, res) => {
+    res.redirect("/dashboard");
+  }
+);
+
+// TWITTER STRATEGY
+// GET | twitter auth login
+router.get("/twitter", passport.authenticate("twitter"));
+
+// GET | redirect user after twitter oauth
+router.get(
+  "/twitter/callback",
+  passport.authenticate("twitter", { failureRedirect: "/" }),
   (req, res) => {
     res.redirect("/dashboard");
   }
