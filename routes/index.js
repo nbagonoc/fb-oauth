@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
   res.render("index/welcome");
 });
 
-// GET | display login
+// GET | display login page
 router.get("/login", (req, res) => {
   if (req.user) {
     res.redirect("/dashboard");
