@@ -47,20 +47,26 @@ router.get("/show/:id", (req, res) => {
     .populate("user")
     .populate("comments.commentUser")
     .then(journal => {
+      // show the journal if its is public
       if (journal.status == "public") {
         res.render("journals/show", {
           journal
         });
+        // if its private,
       } else {
+        // if user is authenticated,
         if (req.user) {
+          // if user id is same to the journals user id,
           if (req.user.id == journal.user._id) {
             res.render("journals/show", {
               journal
             });
+            // if user id is not same with journals user id,
           } else {
             req.flash("error_msg", "Not authorized");
             res.redirect("/journals");
           }
+          // if user is not authenticated, user will be redirected to the public journals page
         } else {
           req.flash("error_msg", "Not authorized");
           res.redirect("/journals");
@@ -114,9 +120,11 @@ router.post("/add", ensureAuthenticated, (req, res) => {
 // GET | display edit form
 router.get("/edit/:id", ensureAuthenticated, (req, res) => {
   Journal.findOne({ _id: req.params.id }).then(journal => {
+    // if authenticated user id is not equal to post user id,
     if (journal.user != req.user.id) {
       req.flash("error_msg", "Not authorized");
       res.redirect("/journals");
+      // if authenticated user id is equal to post user id
     } else {
       res.render("journals/edit", {
         journal
